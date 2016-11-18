@@ -1,0 +1,127 @@
+body > div.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    top: 65px;
+
+    @media only screen and (max-width : 1155px) {
+        padding: 0 15px;    
+    }
+
+    @media only screen and (max-width : 480px) {
+        top: 116px; 
+    }
+
+    div.list-container {
+        div.list-item {
+            display: inline-block;
+            width: calc(~"14.285% - 17px");
+            height: 225px;
+            border: 1px solid darkgrey;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            position: relative;
+            margin: 0 0 15px 15px;
+            cursor: pointer;
+
+            @media only screen and (max-width : 979px) {
+                width: calc(~"16.667% - 17px");
+            }
+            @media only screen and (max-width : 816px) {
+                width: calc(~"20% - 17px");
+            } 
+            @media only screen and (max-width : 767px) {
+                width: calc(~"25% - 17px");
+            } 
+            @media only screen and (max-width : 560px) {
+                width: calc(~"33.336% - 17px");
+            }
+            @media only screen and (max-width : 440px) {
+                width: calc(~"50% - 17px");
+            }
+
+            > div.image-container {
+                width: 100%;
+				height: 100%;
+
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: top;
+				background-size: auto 100%;
+
+				opacity: 0.6;
+            }
+
+            > div.title-container {
+                position: absolute;
+				bottom: 3px;
+				left: 3px;
+				background-color: rgba(255, 255, 255, 0.85);
+				width: calc(100% - 6px);
+				text-align: center;
+				padding: 5px;
+            }
+        }
+    }
+
+    div.login-container {
+        text-align: center;
+
+        > form {
+            > div {
+                margin-bottom: 10px;
+
+                &.error {
+                    color: red;
+                }
+
+                > input[type="submit"] {
+                    background-color: #ffffff;
+                    border: 1px solid #a9a9a9;
+                    color: #a9a9a9;
+                    font-size: 16px;
+                    padding: 10px;
+                    width: 250px;
+                }
+
+                > input[type="text"], > input[type="password"] {
+                    border: 0px;
+                    border-bottom: 1px solid #a9a9a9;
+                    font-size: 16px;
+                    outline: 0;
+                    padding: 10px 0;
+                    width: 250px;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+/*
+// Large Devices, Wide Screens
+@media only screen and (max-width : 1200px) {
+
+}
+
+// Medium Devices, Desktops
+@media only screen and (max-width : 979px) {
+
+}
+
+// Small Devices, Tablets
+@media only screen and (max-width : 767px) {
+
+}
+
+// Extra Small Devices, Phones 
+@media only screen and (max-width : 480px) {
+
+}
+
+// Custom, iPhone Retina
+@media only screen and (max-width : 320px) {
+    
+}
+*/

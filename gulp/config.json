@@ -1,0 +1,10 @@
+{
+    "productionEnv": false,
+    "moduleName": "kmd-moviebase",
+    "vendor": [    
+        "./node_modules/angular/angular.js",
+        "./node_modules/angular-route/angular-route.js",
+        "./node_modules/angularfire/dist/angularfire.js",
+        "./source/js/config/firebase.js"
+    ]
+}

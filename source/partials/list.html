@@ -1,0 +1,12 @@
+<div class="list-container">
+    <div class="list-item"
+         data-ng-click="vm.goToDetails(movie)"
+         data-ng-repeat="(id, movie) in vm.movies">
+         <div class="image-container"
+              data-ng-style="vm.generateImageStyle(movie)">
+         </div>
+         <div class="title-container">
+             {{movie.title}}
+         </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="header-container">
+    <div class="header">
+        <div class="container">
+            <a href="#/">MovieBase</a>
+            <div class="search"
+                 data-ng-class="{'active': vm.searchIsOpen}"
+                 data-ng-show="vm.searchIsVisible()">
+                <i class="material-icons"
+                   data-ng-click="vm.toggleSearch();">
+                   search
+                </i>
+                <input type="text"
+                       data-ng-model="vm.searchTerm">
+            </div>
+        </div>
+    </div>
+    <div class="mobile-search"
+         data-ng-show="vm.searchIsVisible()">
+        <i class="material-icons">search</i>
+        <input type="text"
+            placeholder="Search">
+    </div>
+</div>

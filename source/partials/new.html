@@ -1,0 +1,62 @@
+<label for="id">IMDB Id</label>
+<input type="text" id="id" data-ng-model="vm.imdbID">
+<button data-ng-click="vm.getDataForId()">Get data</button>
+
+<br>
+<br>
+
+<div class="movie_details"
+     data-ng-show="vm.movieObj">
+    <p>
+        <label for="title">Title</label>
+        <input type="text"
+            id="title" 
+            data-ng-model="vm.movieObj.title">
+    </p>
+    <p>
+        <label for="language">Language</label>
+        <input type="text"
+            id="language" 
+            data-ng-model="vm.movieObj.language">
+    </p>
+    <p>
+        <label for="runtime">Runtime</label>
+        <input type="text"
+            id="runtime" 
+            data-ng-model="vm.movieObj.runtime">
+    </p>
+    <p>
+        <label for="rating">Rating</label>
+        <input type="text"
+            id="rating" 
+            data-ng-model="vm.movieObj.rating">
+    </p>
+    <p>
+        <label for="release_date">Release date</label>
+        <input type="text"
+            id="release_date" 
+            data-ng-model="vm.movieObj.release_date">
+    </p>
+    <p>
+        <label for="synopsis">Synopsis</label>
+        <textarea id="synopsis" 
+                data-ng-model="vm.movieObj.synopsis">
+        </textarea>
+    </p>
+    <p>
+        <label for="image">Image</label>
+        <input type="text"
+            id="image" 
+            data-ng-model="vm.movieObj.image">
+    </p>
+    <p>
+        <label for="genre">Genre</label>
+        <input type="text"
+            id="genre" 
+            data-ng-model="vm.movieObj.genre">
+    </p>
+    <p>
+        <button data-ng-click="vm.persistMovie()">Add</button>
+        <button data-ng-click="vm.clearData()">Clear</button>
+    </p>
+</div>
