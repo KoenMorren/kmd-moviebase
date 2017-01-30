@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('kmd-moviebase', ['ngRoute', 'firebase'])
+        .module('kmd-moviebase', ['ngRoute'])
         .config(configuration)
         .constant('MODELS', getModels());
     
@@ -12,18 +12,22 @@
             // .when('/', {
             //     templateUrl: '../../partials/home.html'
             // })
-            .when('/movies', {
+            .when('/movies/:searchterm?', {
                 templateUrl: '../../partials/list.html',
                 controller: 'listController',
                 controllerAs: 'vm',
                 resolve: {
-                    authenticate: checkAuthentication
+                    authenticate: checkAuthentication,
+                    movies: retrieveMovies
                 }
             })
             .when('/movie/:id', {
                 templateUrl: '../../partials/details.html',
+                controller: 'detailsController',
+                controllerAs: 'vm',
                 resolve: {
-                    authenticate: checkAuthentication
+                    authenticate: checkAuthentication,
+                    movieInfo: retrieveMovieDetail
                 }
             })
             .when('/login', {
@@ -34,7 +38,10 @@
             .when('/new', {
                 templateUrl: '../../partials/new.html',
                 controller: 'newController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    authenticate: checkAuthentication
+                }
             })
             .otherwise('/movies');
         
@@ -55,10 +62,26 @@
         return deferred.promise;
     }
 
+    retrieveMovies.$inject = ['$route', '$window', 'dbFactory']
+    function retrieveMovies($route, $window, dbFactory) {
+        var search = $route.current.params.searchterm ? $window.decodeURIComponent($route.current.params.searchterm) : '';
+        return dbFactory.getListOfMovies(search).then(function(data) {
+            return data;
+        });
+    }
+
+    retrieveMovieDetail.$inject = ['$route', 'dbFactory'];
+    function retrieveMovieDetail($route, dbFactory) {
+        return dbFactory.getMovieDetails($route.current.params.id).then(function(data) {
+            return data;
+        });
+    }
+
     function getModels() {
         function MovieModel() {
             this.id = null;
             this.title = null;
+            this.searchterm = null;
             this.image = null;
             this.synopsis = null;
             this.release_date = null;
@@ -70,6 +93,7 @@
         MovieModel.prototype.fill = function (data) {
             this.id = data.imdbID;
             this.title = data.Title;
+            this.searchterm = data.Title.toLowerCase();
             this.image = data.Poster;
             this.synopsis = data.Plot;
             this.release_date = data.Released;

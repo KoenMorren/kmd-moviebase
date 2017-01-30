@@ -9,15 +9,25 @@
                    data-ng-click="vm.toggleSearch();">
                    search
                 </i>
-                <input type="text"
-                       data-ng-model="vm.searchTerm">
+                <form>
+                    <input type="text"
+                           data-ng-model="vm.searchTerm"
+                           data-ng-blur="vm.toggleSearch()">
+                    <input type="submit"
+                           data-ng-click="vm.search()">
+                </form>
             </div>
         </div>
     </div>
     <div class="mobile-search"
          data-ng-show="vm.searchIsVisible()">
         <i class="material-icons">search</i>
-        <input type="text"
-            placeholder="Search">
+        <form>
+            <input type="text"
+                   placeholder="Search"
+                   data-ng-model="vm.searchTerm">
+            <input type="submit"
+                   data-ng-click="vm.search()">
+        </form>
     </div>
 </div>

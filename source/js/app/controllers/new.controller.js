@@ -30,7 +30,6 @@
             omdbFactory.getDataByID(vm.imdbID).then(
                 function(movie) {
                     vm.movieObj = movie;
-                    console.log(movie);
                 }
             );
         }

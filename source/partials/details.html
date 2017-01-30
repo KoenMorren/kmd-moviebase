@@ -1,1 +1,17 @@
-details
+<div class="details-container">
+    <span class="image-container">
+        <img alt="{{vm.movie.title}}"
+             data-ng-src="{{vm.movie.image}}">
+    </span>
+    <span class="details">
+        <p class="title">
+            {{vm.movie.title}}
+        </p>
+        <p class="releasedate">
+            {{vm.movie.release_date}}
+        </p>
+        <p class="synopsis">
+            {{vm.movie.synopsis}}
+        </p>
+    </span>
+</div>

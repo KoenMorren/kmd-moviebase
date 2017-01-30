@@ -5,13 +5,13 @@
         .module('kmd-moviebase')
         .controller('listController', listController);
 
-    listController.$inject = ['$location' ,'dbFactory'];
-    function listController($location, dbFactory) {
+    listController.$inject = ['$location' ,'dbFactory', 'movies'];
+    function listController($location, dbFactory, movies) {
         var vm = this;
         
         angular.extend(vm, {
             //variables
-            movies: null,
+            movies: dbFactory.movies,
 
             //function
             generateImageStyle: generateImageStyle,
@@ -23,68 +23,7 @@
         ////////////////
 
         function activate() { 
-            vm.movies2 = [
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                },
-                {
-                    title: 'Harry Potter and the bla bla',
-                    image: 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTY2MTk3MDQ1N15BMl5BanBnXkFtZTcwMzI4NzA2NQ@@._V1_UX182_CR0,0,182,268_AL_.jpg'
-                }
-            ];
-
-            dbFactory.getListOfMovies().then(function(movies) {
-                vm.movies = movies;
-            });;
+            
         }
 
         function generateImageStyle(movie) {

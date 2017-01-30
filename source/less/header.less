@@ -60,9 +60,10 @@ div.header-container {
                     > i {
                         margin-right: 5px;
                     }
-
-                    > input[type="text"] {
-                        width: 150px;
+                    > form {
+                        > input[type="text"] {
+                            width: 150px;
+                        }
                     }
                 }
 
@@ -71,16 +72,21 @@ div.header-container {
                     transition: margin-right @search_transition_delay linear;
                 }
                 
-                > input[type="text"] {
-                    width: 0px;
-                    border: 0px;
-                    border-bottom: 1px solid @search_border;
-                    color: currentColor;
-                    background-color: @header_bg;
-                    outline: 0;
+                > form {
+                    > input[type="text"] {
+                        width: 0px;
+                        border: 0px;
+                        border-bottom: 1px solid @search_border;
+                        color: currentColor;
+                        background-color: @header_bg;
+                        outline: 0;
 
-                    transition: width @search_transition_delay linear;
-                    font-size: 20px;
+                        transition: width @search_transition_delay linear;
+                        font-size: 20px;
+                    }
+                    > input[type="submit"] {
+                        display: none;
+                    }
                 }
             }
         }
@@ -104,13 +110,18 @@ div.header-container {
             float: left;
         }
 
-        > input[type="text"] {
-            width: calc(~"100% - 44px");
-            border: 0;
-            margin: 5px;
-            float: left;
-            font-size: 20px;
-            outline: 0;
+        > form {
+            > input[type="text"] {
+                width: calc(~"100% - 44px");
+                border: 0;
+                margin: 5px;
+                float: left;
+                font-size: 20px;
+                outline: 0;
+            }
+            > input[type="submit"] {
+                display: none;
+            }
         }
     }
 }

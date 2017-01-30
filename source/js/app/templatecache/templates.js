@@ -3,7 +3,7 @@
 
     angular.module('kmd-moviebase')
            .run(['$templateCache', function($templateCache) {
-        $templateCache.put('./js/app/directives/header/header.html','<div class="header-container"><div class="header"><div class="container"><a href="#/">MovieBase</a><div class="search" data-ng-class="{\'active\': vm.searchIsOpen}" data-ng-show="vm.searchIsVisible()"><i class="material-icons" data-ng-click="vm.toggleSearch();">search </i><input type="text" data-ng-model="vm.searchTerm"></div></div></div><div class="mobile-search" data-ng-show="vm.searchIsVisible()"><i class="material-icons">search</i> <input type="text" placeholder="Search"></div></div>');
+        $templateCache.put('./js/app/directives/header/header.html','<div class="header-container"><div class="header"><div class="container"><a href="#/">MovieBase</a><div class="search" data-ng-class="{\'active\': vm.searchIsOpen}" data-ng-show="vm.searchIsVisible()"><i class="material-icons" data-ng-click="vm.toggleSearch();">search</i><form><input type="text" data-ng-model="vm.searchTerm" data-ng-blur="vm.toggleSearch()"> <input type="submit" data-ng-click="vm.search()"></form></div></div></div><div class="mobile-search" data-ng-show="vm.searchIsVisible()"><i class="material-icons">search</i><form><input type="text" placeholder="Search" data-ng-model="vm.searchTerm"> <input type="submit" data-ng-click="vm.search()"></form></div></div>');
     }]);
 })();
 (function () {
@@ -11,7 +11,7 @@
 
     angular.module('kmd-moviebase')
            .run(['$templateCache', function($templateCache) {
-        $templateCache.put('../../partials/details.html','details');
+        $templateCache.put('../../partials/details.html','<div class="details-container"><span class="image-container"><img alt="{{vm.movie.title}}" data-ng-src="{{vm.movie.image}}"> </span><span class="details"><p class="title">{{vm.movie.title}}</p><p class="releasedate">{{vm.movie.release_date}}</p><p class="synopsis">{{vm.movie.synopsis}}</p></span></div>');
         $templateCache.put('../../partials/home.html','home');
         $templateCache.put('../../partials/list.html','<div class="list-container"><div class="list-item" data-ng-click="vm.goToDetails(movie)" data-ng-repeat="(id, movie) in vm.movies"><div class="image-container" data-ng-style="vm.generateImageStyle(movie)"></div><div class="title-container">{{movie.title}}</div></div></div>');
         $templateCache.put('../../partials/login.html','<div class="login-container"><form><div><input type="text" data-ng-model="vm.user.username" placeholder="Username"></div><div><input type="password" data-ng-model="vm.user.password" placeholder="Password"></div><div class="error">{{vm.getErrorMessage()}}</div><div><input type="submit" data-ng-click="vm.authenticate()" value="Login"></div></form></div>');

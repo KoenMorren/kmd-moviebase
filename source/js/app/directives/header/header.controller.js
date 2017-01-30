@@ -5,8 +5,8 @@
         .module('kmd-moviebase')
         .controller('headerController', headerController);
 
-    headerController.$inject = ['$element', 'userFactory'];
-    function headerController($element, userFactory) {
+    headerController.$inject = ['$element', '$location', '$window', 'userFactory'];
+    function headerController($element, $location, $window, userFactory) {
         var vm = this;
         
         angular.extend(vm, {
@@ -16,15 +16,17 @@
             searchTerm: '',
 
             //functions
-            toggleSearch: toggleSearch
+            search: search,
+            toggleSearch: toggleSearch,
         });
-
-        activate();
 
         ///////////
 
-        function activate() {
+        function search() {
+            vm.searchIsOpen = false;
+            $element.children()[0].children[0].children[0].children[1].children[1].children[0].blur();
 
+            $location.path('/movies/' + $window.encodeURIComponent(vm.searchTerm));
         }
 
         function toggleSearch() {
@@ -32,9 +34,9 @@
 
             if (vm.searchIsOpen) {
                 vm.searchTerm = '';
-                $element.children()[0].children[0].children[0].children[1].children[1].focus();
+                $element.children()[0].children[0].children[0].children[1].children[1].children[0].focus();
             } else {
-                $element.children()[0].children[0].children[0].children[1].children[1].blur();
+                $element.children()[0].children[0].children[0].children[1].children[1].children[0].blur();
             }
         }
     }

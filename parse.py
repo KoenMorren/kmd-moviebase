@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 from urllib.request import urlopen
 
 def main():
-    _path = requestPath('Please specify the root-folder address. This will be the entry point of the search.\n')
+    _path = requestPath('Please specify the root-folder address. This will be the entry point of the search:\n')
     _ids = parseFolderStructure(_path)
 
     storeIdsInFile(_ids)
@@ -43,6 +43,7 @@ def parseFolderStructure(path):
                 _ids.append(_idFile[0][:-3])
             else:
                 _title = parseTitleFromFolderName(_dirName)
+                print(_title)
                 _id = getIDForTitle(_title)
                 addIDFile(dirInfo[0], _id)
                 _ids.append(_id)
@@ -54,7 +55,7 @@ In general, the name of the folder is the title of the movie with both quality
 and release year specified. This function returns only the title.
 """
 def parseTitleFromFolderName(folderName):
-    _metaInfoMatches = re.findall(r"(\[|\()(\d{4})([p]?)(\]|\))", folderName)
+    _metaInfoMatches = re.findall(r"(\[|\()(\d{3}|\d{4})([p]?)(\]|\))", folderName)
     for match in _metaInfoMatches:
         folderName = folderName.replace(''.join(match), '')
 
@@ -76,13 +77,15 @@ If more matches are found, prompt the user to select the correct record.
 def getIDForTitle(title):
     _url = 'http://www.omdbapi.com/?'
     _query = {}
-    _query['s'] = title;
+    _query['s'] = title
     _query['type'] = 'movie'
     
     uh = urlopen(_url + urlencode(_query))
     data = uh.read().decode('utf-8')
     obj = json.loads(data)
 
+    if(obj['Response'] == 'False'):
+        return promptUserForId()
     if(int(obj['totalResults']) == 1):
         print(obj['Search'][0]['imdbID'])
         return obj['Search'][0]['imdbID']
@@ -103,18 +106,23 @@ def promptUserForSelection(searchResults):
     # Parse user input
     _input = int(input(''))
     if(_input == 0):
-        _input = input('Please specify the IMDB-Id:')
-        # TODO: check if user has entered the correct id?
-        return _input
+        return promptUserForId()
     else:
         _input = _input - 1
         return searchResults[_input]['imdbID'] 
         
 """
 """
+def promptUserForId():
+    # TODO: check if user has entered the correct id?
+    _input = input('Please specify the IMDB-Id:')
+    return _input
+
+"""
+"""
 def storeIdsInFile(ids):
-    _path = requestPath('Please specify the path where the file should stored (incl filename):')
-    _file = open(_path, 'w')
+    _path = requestPath('Please specify the path where the file should stored:\n')
+    _file = open(os.path.join(_path, 'test.txt'), 'w')
     _file.write(';'.join(ids))
     _file.close()
 
